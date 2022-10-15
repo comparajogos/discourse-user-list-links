@@ -1,0 +1,60 @@
+<script type="text/discourse-plugin" version="0.8.7">
+  api.registerConnectorClass('user-profile-primary', 'external-profile-links', {
+    setupComponent(args, component) {
+      const username = component.model.username;
+      component.set('externalProfileLinks', createLinks(username));
+    }
+  });
+
+  api.registerConnectorClass('user-card-metadata', 'external-profile-links', {
+    setupComponent(args, component) {
+      const username = component.user.username;
+      component.set('externalProfileLinks', createLinks(username));
+    }
+  });
+
+  function createLinks(username) {
+      return [
+          {
+              name: "Coleção",
+              href: "https://www.comparajogos.com.br/u/" + username + "/colecao",
+              icon: "check",
+              title: "ver a coleção deste usuário"
+          },
+          {
+              name: "Lista de Desejos",
+              href: "https://www.comparajogos.com.br/u/" + username + "/desejos",
+              icon: "star",
+              title: "ver a lista de desejos deste usuário"
+          }
+      ]
+  }
+</script>
+
+<script
+  type="text/x-handlebars"
+  data-template-name="/connectors/user-profile-primary/external-profile-links"
+>
+  {{#if externalProfileLinks}}
+    <div class="external-profile-links">
+      <span class="desc">Listas</span>
+      {{#each externalProfileLinks as |l|}}
+        <a class="external-profile-link" href="{{l.href}}" title="{{l.title}}">{{d-icon l.icon}} {{l.name}}</a>
+      {{/each}}
+    </div>
+  {{/if}}
+</script>
+
+<script
+  type="text/x-handlebars"
+  data-template-name="/connectors/user-card-metadata/external-profile-links"
+>
+  {{#if externalProfileLinks}}
+    <div class="external-profile-links">
+      <span class="desc">Listas</span>
+      {{#each externalProfileLinks as |l|}}
+        <a class="external-profile-link" href="{{l.href}}" title="{{l.title}}">{{d-icon l.icon}} {{l.name}}</a>
+      {{/each}}
+    </div>
+  {{/if}}
+</script>
