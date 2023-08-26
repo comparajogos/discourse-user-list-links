@@ -1,0 +1,8 @@
+{{#if this.externalProfileLinks}}
+  <div class="external-profile-links">
+    <span class="desc">Listas</span>
+    {{#each this.externalProfileLinks as |l|}}
+      <a class="external-profile-link" href="{{l.href}}" title="{{l.title}}">{{d-icon l.icon}} {{l.name}}</a>
+    {{/each}}
+  </div>
+{{/if}}
