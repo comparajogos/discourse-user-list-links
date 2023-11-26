@@ -49,7 +49,7 @@ export default class ExternalProfileLinks extends Component {
 
     this.externalProfileLinks = data.lists.map((list) => ({
       name: `${list.name} (${list.items_aggregate.aggregate.count})`,
-      href: `https://www.comparajogos.com.br/u/${this.args.username}/listas/${list.slug}`,
+      href: `https://www.comparajogos.com.br/u/${this.args.username}/list/${list.slug}`,
       icon: ICON_MAP[list.type] ?? "eye",
     }));
   }
