@@ -15,7 +15,7 @@ async function graphql(query, variables) {
 }
 
 const LIST_QUERY = `query list($username: String!) {
-  list(where: {user: {username: {_eq: $username}}}, limit: 4) {
+  lists(where: {user: {username: {_eq: $username}}}, limit: 4) {
     name
     slug
     type
@@ -47,7 +47,7 @@ export default class ExternalProfileLinks extends Component {
       username: this.args.username,
     });
 
-    this.externalProfileLinks = data.list.map((list) => ({
+    this.externalProfileLinks = data.lists.map((list) => ({
       name: `${list.name} (${list.items_aggregate.aggregate.count})`,
       href: `https://www.comparajogos.com.br/u/${this.args.username}/listas/${list.slug}`,
       icon: ICON_MAP[list.type] ?? "eye",
